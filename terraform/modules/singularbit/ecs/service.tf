@@ -77,7 +77,70 @@ data "aws_iam_policy_document" "role_policy" {
 }
 
 
+/*
+# ecs-service/main.tf
+provider "aws" {
+  region = var.region
+}
 
+resource "aws_ecs_task_definition" "this" {
+  family                   = var.task_family
+  container_definitions    = jsonencode(var.container_definitions)
+  execution_role_arn       = var.execution_role_arn
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = var.cpu
+  memory                   = var.memory
+}
+
+resource "aws_ecs_service" "this" {
+  name            = var.service_name
+  cluster         = var.cluster_id
+  task_definition = aws_ecs_task_definition.this.arn
+  desired_count   = var.desired_count
+
+  load_balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = var.container_name
+    container_port   = var.container_port
+  }
+
+  network_configuration {
+    subnets         = var.subnets
+    security_groups = var.security_groups
+    assign_public_ip = true
+  }
+}
+
+# Outputs
+output "service_name" {
+  value = aws_ecs_service.this.name
+}
+
+output "task_definition_arn" {
+  value = aws_ecs_task_definition.this.arn
+}
+
+
+
+# ecs-service/main.tf
+resource "aws_lb_target_group" "this" {
+  name     = "${var.service_name}-tg"
+  port     = var.container_port
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+
+  health_check {
+    path                = "/"
+    interval            = 30
+  }
+}
+
+output "target_group_arn" {
+  value = aws_lb_target_group.this.arn
+}
+
+ */
 
 
 

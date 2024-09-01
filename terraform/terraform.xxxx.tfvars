@@ -27,6 +27,60 @@ public_subnets_4_ecs   = ["11", "12", "13"]
 private_subnets_4_ecs  = ["21", "22", "23"]
 database_subnets_4_ecs = ["31", "32", "33"]
 
+
+/*
+ecs_services = {
+  service1 = {
+    task_family = "service1-task"
+    container_definitions = [
+      {
+        name  = "service1-container"
+        image = "nginx"
+        cpu   = 256
+        memory = 512
+        portMappings = [
+          {
+            containerPort = 80
+            hostPort      = 80
+          }
+        ]
+      }
+    ]
+    desired_count    = 2
+    target_group_arn = "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/service1-tg/abcdef1234567890"
+    container_name   = "service1-container"
+    container_port   = 80
+    subnets          = ["subnet-12345", "subnet-67890"]
+    security_groups  = ["sg-01234567"]
+  },
+  service2 = {
+    task_family = "service2-task"
+    container_definitions = [
+      {
+        name  = "service2-container"
+        image = "httpd"
+        cpu   = 256
+        memory = 512
+        portMappings = [
+          {
+            containerPort = 8080
+            hostPort      = 8080
+          }
+        ]
+      }
+    ]
+    desired_count    = 1
+    target_group_arn = "arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/service2-tg/abcdef1234567890"
+    container_name   = "service2-container"
+    container_port   = 8080
+    subnets          = ["subnet-12345", "subnet-67890"]
+    security_groups  = ["sg-01234567"]
+  }
+}
+
+ */
+
+
 # # ---------------------------------------------------------------------------------------------------------------------
 # # VARIABLES - STATIC WEBSITE(S)
 # # ---------------------------------------------------------------------------------------------------------------------
