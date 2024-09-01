@@ -235,3 +235,31 @@ module "vpc_4_ecs" {
     "Name" = "${var.project_name}-${var.branch_name}-${local.vpc_suffix}",
   }, local.custom_tags)
 }
+
+
+# module "vpc" {
+#   source = "./vpc"
+#
+#   region            = "us-west-2"
+#   vpc_cidr          = "10.0.0.0/16"
+#   public_subnets    = {
+#     "us-west-2a" = "10.0.1.0/24"
+#     "us-west-2b" = "10.0.2.0/24"
+#   }
+#   private_subnets   = {
+#     "us-west-2a" = "10.0.3.0/24"
+#     "us-west-2b" = "10.0.4.0/24"
+#   }
+#   nat_gateway_enabled = true
+#   flow_log_destination = aws_cloudwatch_log_group.vpc_flow_logs.arn
+#   tags               = {
+#     "Environment" = "prod"
+#     "Project"     = "vpc-setup"
+#   }
+#   name_prefix = "prod-vpc"
+# }
+#
+# resource "aws_cloudwatch_log_group" "vpc_flow_logs" {
+#   name = "/aws/vpc/flow-logs"
+#   retention_in_days = 7
+# }
